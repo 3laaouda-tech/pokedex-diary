@@ -25,6 +25,9 @@
       .dex-search-input {
         @apply bg-[#1a1a2e] border border-[#2a2a4a] px-4 py-2 rounded-lg text-sm w-64;
       }
+      .dex-main {
+        @apply max-w-7xl mx-auto px-6 py-10;
+      }
      }
     </style>
 </head>
@@ -37,11 +40,34 @@
 
             <div class="flex-1"></div>
 
-            <input type="text" placeholder="Search..."
-                class="dex-search-input">
+            <input type="text" placeholder="Search..." class="dex-search-input">
         </div>
     </header>
 
+    <!-- MAIN -->
+    <main class="dex-main">
+        <div class="mb-6">
+            <h1 class="text-3xl font-bold">National Pokédex</h1>
+            <p class="text-sm text-gray-400">Showing Pokémon</p>
+        </div>
+
+        
+            <!-- CARD -->
+            <a href="details.html" class="dex-card">
+                <div class="dex-card__img"><img
+                        src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/001.png"
+                        alt="Bulbasaur"></div>
+                <div class="dex-card__body">
+                    <div class="dex-card__number">#0001</div>
+                    <div class="dex-card__name">Bulbasaur</div>
+                    <div class="flex gap-1">
+                        <span class="type-badge type-grass">grass</span>
+                        <span class="type-badge type-poison">poison</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
 </body>
 
 </html>
