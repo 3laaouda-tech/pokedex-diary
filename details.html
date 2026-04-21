@@ -19,27 +19,70 @@
       .dex-header {
         @apply bg-[#16213e] border-b border-[#2a2a4a];
       }
+      .dex-back {
+        @apply text-xs text-gray-400 hover:text-[#e94560];
+      }
+
+      .card {
+        @apply bg-[#0f3460] rounded-2xl border border-[#2a2a4a];
+      }
+
+      .tab {
+        @apply flex-1 text-center py-3 text-xs uppercase text-gray-400 border-b-2 text-[#e94560] border-[#e94560];
+      }
+
+  
+
+      .type-badge {
+        @apply px-3 py-1 text-xs rounded text-white uppercase;
+      }
+
+      .type-grass { @apply bg-green-500; }
+      .type-poison { @apply bg-purple-500; }
+
     }
 
-  </style
+  </style>
 </head>
+
 <body>
     <!-- HEADER -->
-  <header class="dex-header">
-    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center gap-4">
-      <a href="index.html" class="dex-back">← Back</a>
-      <h1 class="text-xl font-bold text-[#e94560]">Bulbasaur</h1>
-    </div>
-  </header>
+    <header class="dex-header">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center gap-4">
+            <a href="index.html" class="dex-back">← Back</a>
+            <h1 class="text-xl font-bold text-[#e94560]">Bulbasaur</h1>
+        </div>
+    </header>
 
-  <!-- MAIN -->
-  <main class="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8">
-    <!-- LEFT -->
-    <div class="space-y-4">
+    <!-- MAIN -->
+    <main class="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8">
+
+
+        <!-- LEFT -->
+        <div class="space-y-4">
+            <div class="card p-6 flex items-center justify-center">
+                <img src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/001.png"
+                    alt="Bulbasaur">
+            </div>
+
+            <div class="card">
+                <div class="flex">
+                    <div class="tab">Stats</div>
+
+                </div>
+
+                <div class="p-4 text-sm space-y-2">
+                    <p>HP: 45</p>
+                    <p>Attack: 49</p>
+                    <p>Defense: 49</p>
+                    <p>Speed: 45</p>
+                </div>
+            </div>
         </div>
-        <!-- RIGHT -->
-    <div class="space-y-6">
-        </div>
+
+
+      
     </main>
 </body>
+
 </html>
