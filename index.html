@@ -28,6 +28,41 @@
       .dex-main {
         @apply max-w-7xl mx-auto px-6 py-10;
       }
+      .dex-grid {
+        @apply grid gap-5;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+      .dex-card {
+        @apply bg-[#0f3460] rounded-2xl overflow-hidden transition-all duration-300;
+      }
+      .dex-card:hover {
+        @apply -translate-y-1;
+      }
+      .dex-card__img {
+        @apply h-40 flex items-center justify-center text-5xl;
+        background: linear-gradient(135deg, rgba(15,52,96,0.8), rgba(26,26,46,0.9));
+      }
+
+      .dex-card__body {
+        @apply p-4;
+      }
+
+      .dex-card__number {
+        @apply text-xs text-[#e94560] tracking-widest;
+      }
+
+      .dex-card__name {
+        @apply font-bold text-lg mb-2;
+      }
+
+      .type-badge {
+        @apply px-2 py-0.5 rounded-full text-xs font-bold text-white uppercase;
+      }
+
+      .type-grass { @apply bg-green-500; }
+      .type-fire { @apply bg-orange-500; }
+      .type-water { @apply bg-blue-500; }
+      .type-poison { @apply bg-purple-500; }
      }
     </style>
 </head>
@@ -51,7 +86,7 @@
             <p class="text-sm text-gray-400">Showing Pokémon</p>
         </div>
 
-        
+        <div class="dex-grid">
             <!-- CARD -->
             <a href="details.html" class="dex-card">
                 <div class="dex-card__img"><img
@@ -63,6 +98,100 @@
                     <div class="flex gap-1">
                         <span class="type-badge type-grass">grass</span>
                         <span class="type-badge type-poison">poison</span>
+                    </div>
+                </div>
+            </a>
+            <!-- CARD -->
+            <a href="details.html" class="dex-card">
+                <div class="dex-card__img"><img
+                        src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/004.png"
+                        alt="Charmander"></div>
+                <div class="dex-card__body">
+                    <div class="dex-card__number">#0004</div>
+                    <div class="dex-card__name">Charmander</div>
+                    <div class="flex gap-1">
+                        <span class="type-badge type-fire">fire</span>
+                    </div>
+                </div>
+            </a>
+            <!-- CARD -->
+            <a href="details.html" class="dex-card">
+                <div class="dex-card__img"><img
+                        src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/001.png"
+                        alt="Bulbasaur"></div>
+                <div class="dex-card__body">
+                    <div class="dex-card__number">#0001</div>
+                    <div class="dex-card__name">Bulbasaur</div>
+                    <div class="flex gap-1">
+                        <span class="type-badge type-grass">grass</span>
+                        <span class="type-badge type-poison">poison</span>
+                    </div>
+                </div>
+            </a>
+            <!-- CARD -->
+            <a href="details.html" class="dex-card">
+                <div class="dex-card__img"><img
+                        src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/004.png"
+                        alt="Charmander"></div>
+                <div class="dex-card__body">
+                    <div class="dex-card__number">#0004</div>
+                    <div class="dex-card__name">Charmander</div>
+                    <div class="flex gap-1">
+                        <span class="type-badge type-fire">fire</span>
+                    </div>
+                </div>
+            </a>
+            <!-- CARD -->
+            <a href="details.html" class="dex-card">
+                <div class="dex-card__img"><img
+                        src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/001.png"
+                        alt="Bulbasaur"></div>
+                <div class="dex-card__body">
+                    <div class="dex-card__number">#0001</div>
+                    <div class="dex-card__name">Bulbasaur</div>
+                    <div class="flex gap-1">
+                        <span class="type-badge type-grass">grass</span>
+                        <span class="type-badge type-poison">poison</span>
+                    </div>
+                </div>
+            </a>
+            <!-- CARD -->
+            <a href="details.html" class="dex-card">
+                <div class="dex-card__img"><img
+                        src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/004.png"
+                        alt="Charmander"></div>
+                <div class="dex-card__body">
+                    <div class="dex-card__number">#0004</div>
+                    <div class="dex-card__name">Charmander</div>
+                    <div class="flex gap-1">
+                        <span class="type-badge type-fire">fire</span>
+                    </div>
+                </div>
+            </a>
+            <!-- CARD -->
+            <a href="details.html" class="dex-card">
+                <div class="dex-card__img"><img
+                        src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/001.png"
+                        alt="Bulbasaur"></div>
+                <div class="dex-card__body">
+                    <div class="dex-card__number">#0001</div>
+                    <div class="dex-card__name">Bulbasaur</div>
+                    <div class="flex gap-1">
+                        <span class="type-badge type-grass">grass</span>
+                        <span class="type-badge type-poison">poison</span>
+                    </div>
+                </div>
+            </a>
+            <!-- CARD -->
+            <a href="details.html" class="dex-card">
+                <div class="dex-card__img"><img
+                        src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/004.png"
+                        alt="Charmander"></div>
+                <div class="dex-card__body">
+                    <div class="dex-card__number">#0004</div>
+                    <div class="dex-card__name">Charmander</div>
+                    <div class="flex gap-1">
+                        <span class="type-badge type-fire">fire</span>
                     </div>
                 </div>
             </a>
