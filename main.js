@@ -1,5 +1,5 @@
 // Maria //
-fetch("https://pokeapi.co/api/v2/pokemon?limit=10")
+fetch("https://pokeapi.co/api/v2/pokemon?limit=25")
   .then(res => res.json())
   .then(data => {
     return Promise.all(
@@ -47,13 +47,43 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=10")
 
       card.innerHTML = `
         <div class="dex-card__img">
-          <img src="${pokemon.sprite}" alt="${pokemon.name}">
+          <img src="${pokemon.sprite}" alt="${pokemon.name}" style="width: 87%;">
         </div>
         <div class="dex-card__body">
-          <div class="dex-card__number">#${pokemon.id}</div>
+          <div class="dex-card__number">#${String(pokemon.id).padStart(4, '0')}</div>
           <div class="dex-card__name">${pokemon.name}</div>
           <div class="flex gap-1">${types}</div>
         </div>`;
+
+      // add catch button 
+      const catchBtn = document.createElement("button");
+      catchBtn.className = "catch-btn";
+
+      // based on pokemon id to determine if pokemon is caught or not
+      const caughtList = JSON.parse(localStorage.getItem("caughtPokemons") || "[]");
+      const isCaught = caughtList.includes(pokemon.id);
+      catchBtn.textContent = isCaught ? "Caught" : "Catch'em";
+      
+      catchBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const caughtList = JSON.parse(localStorage.getItem("caughtPokemons") || "[]");
+        if (isCaught) {
+          // If already caught, remove from list
+          const index = caughtList.indexOf(pokemon.id);
+          if (index > -1) {
+            caughtList.splice(index, 1);
+          }
+        } else {
+          // If not caught, add to list
+          caughtList.push(pokemon.id);
+        }
+        localStorage.setItem("caughtPokemons", JSON.stringify(caughtList));
+        catchBtn.textContent = isCaught ? "Catch'em" : "Caught";
+      });
+
+      card.appendChild(catchBtn);
 
       grid.appendChild(card);
     });
