@@ -55,6 +55,36 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=25")
           <div class="flex gap-1">${types}</div>
         </div>`;
 
+      // add catch button 
+      const catchBtn = document.createElement("button");
+      catchBtn.className = "catch-btn";
+
+      // based on pokemon id to determine if pokemon is caught or not
+      const caughtList = JSON.parse(localStorage.getItem("caughtPokemons") || "[]");
+      const isCaught = caughtList.includes(pokemon.id);
+      catchBtn.textContent = isCaught ? "Caught" : "Catch'em";
+      
+      catchBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const caughtList = JSON.parse(localStorage.getItem("caughtPokemons") || "[]");
+        if (isCaught) {
+          // If already caught, remove from list
+          const index = caughtList.indexOf(pokemon.id);
+          if (index > -1) {
+            caughtList.splice(index, 1);
+          }
+        } else {
+          // If not caught, add to list
+          caughtList.push(pokemon.id);
+        }
+        localStorage.setItem("caughtPokemons", JSON.stringify(caughtList));
+        catchBtn.textContent = isCaught ? "Catch'em" : "Caught";
+      });
+
+      card.appendChild(catchBtn);
+
       grid.appendChild(card);
     });
   })
