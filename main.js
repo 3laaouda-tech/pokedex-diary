@@ -2,35 +2,34 @@
 fetch("https://pokeapi.co/api/v2/pokemon?limit=10")
   .then(res => res.json())
   .then(data => {
-    const pokemonRequest = data.results.map(pokemon => 
-      fetch(pokemon.url).then(res => res.json()));
-
-    return Promise.all(pokemonRequest);
-})
+    return Promise.all(
+      data.results.map(pokemon => fetch(pokemon.url).then(res => res.json()))
+    );
+  })
   .then(pokemons => {
-    const pokemonList = pokemons.map(details => {
+    const grid = document.querySelector(".dex-grid");
+    grid.innerHTML = "";
 
-    return {
-      name: details.name,
-      image: details.sprites.front_default,
-      hitPoints: details.stats[0].base_stat,
-      attack: details.stats[1].base_stat,
-      defense: details.stats[2].base_stat,
-  };
-});
+    pokemons.forEach(details => {
+      const types = details.types
+        .map(t => `<span class="type-badge type-${t.type.name}">${t.type.name}</span>`)
+        .join("");
 
-console.log(pokemonList);
-pokemonList.forEach(pokemon => {
-    const div = document.createElement("div");
+      const card = document.createElement("a");
+      card.href = "details.html";
+      card.className = "dex-card";
 
-    div.innerHTML =`<h2>${pokemon.name}</h2>
-      <img src="${pokemon.image}" alt="${pokemon.name}">
-      <p>Hit Point: ${pokemon.hitPoints}</p>
-      <p>Attack: ${pokemon.attack}</p>
-      <p>Defense: ${pokemon.defense}</p>`;
+      card.innerHTML = `
+        <div class="dex-card__img">
+          <img src="${details.sprites.front_default}" alt="${details.name}">
+        </div>
+        <div class="dex-card__body">
+          <div class="dex-card__number">#${details.id}</div>
+          <div class="dex-card__name">${details.name}</div>
+          <div class="flex gap-1">${types}</div>
+        </div>`;
 
-    document.body.appendChild(div);
-
-  });
-})
-  .catch(error => console.error(error)); 
+      grid.appendChild(card);
+    });
+  })
+  .catch(error => console.error(error));
