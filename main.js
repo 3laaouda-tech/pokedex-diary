@@ -34,19 +34,19 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=25")
 
     console.log(PokeDetailsInfo);
 
-    const grid = document.querySelector(".dex-grid");
-    grid.innerHTML = "";
+    const grid = document.querySelector("#pokemonList");
+    if (grid) {
+      grid.innerHTML = "";
+      PokeDetailsInfo.forEach(pokemon => {
+        const types = pokemon.types
+          .map(t => `<span class="type-badge type-${t}">${t}</span>`)
+          .join("");
 
-    PokeDetailsInfo.forEach(pokemon => {
-      const types = pokemon.types
-        .map(t => `<span class="type-badge type-${t}">${t}</span>`)
-        .join("");
+        const card = document.createElement("a");
+        card.href = "details.html";
+        card.className = "dex-card";
 
-      const card = document.createElement("a");
-      card.href = "details.html";
-      card.className = "dex-card";
-
-      card.innerHTML = `
+        card.innerHTML = `
         <div class="dex-card__img">
           <img src="${pokemon.sprite}" alt="${pokemon.name}" style="width: 87%;">
         </div>
@@ -56,38 +56,40 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=25")
           <div class="flex gap-1">${types}</div>
         </div>`;
 
-      // add catch button 
-      const catchBtn = document.createElement("button");
-      catchBtn.className = "catch-btn";
+        // add catch button 
+        const catchBtn = document.createElement("button");
+        catchBtn.className = "catch-btn";
 
-      // based on pokemon id to determine if pokemon is caught or not
-      const caughtList = JSON.parse(localStorage.getItem("caughtPokemons") || "[]");
-      const isCaught = caughtList.includes(pokemon.id);
-      catchBtn.textContent = isCaught ? "Caught" : "Catch'em";
-
-      catchBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
+        // based on pokemon id to determine if pokemon is caught or not
         const caughtList = JSON.parse(localStorage.getItem("caughtPokemons") || "[]");
-        if (isCaught) {
-          // If already caught, remove from list
-          const index = caughtList.indexOf(pokemon.id);
-          if (index > -1) {
-            caughtList.splice(index, 1);
+        const isCaught = caughtList.includes(pokemon.id);
+        catchBtn.textContent = isCaught ? "Caught" : "Catch'em";
+
+        catchBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const caughtList = JSON.parse(localStorage.getItem("caughtPokemons") || "[]");
+          if (isCaught) {
+            // If already caught, remove from list
+            const index = caughtList.indexOf(pokemon.id);
+            if (index > -1) {
+              caughtList.splice(index, 1);
+            }
+          } else {
+            // If not caught, add to list
+            caughtList.push(pokemon.id);
           }
-        } else {
-          // If not caught, add to list
-          caughtList.push(pokemon.id);
-        }
-        localStorage.setItem("caughtPokemons", JSON.stringify(caughtList));
-        catchBtn.textContent = isCaught ? "Catch'em" : "Caught";
+          localStorage.setItem("caughtPokemons", JSON.stringify(caughtList));
+          catchBtn.textContent = isCaught ? "Catch'em" : "Caught";
+        });
+
+        card.appendChild(catchBtn);
+
+        grid.appendChild(card);
       });
-
-      card.appendChild(catchBtn);
-
-      grid.appendChild(card);
-    });
+    }
+    getFavoritePokemons();
   })
   .catch(error => console.error(error));
 
@@ -131,3 +133,35 @@ searchBtn.addEventListener("click", handleSearch);
 closeBtn.addEventListener("click", () => {
   dialog.style.display = "none";
 });
+
+
+function getFavoritePokemons() {
+  const caughtList = JSON.parse(localStorage.getItem("caughtPokemons") || "[]");
+  const caughtPokemons = PokeDetailsInfo.filter(pokemon => caughtList.includes(pokemon.id));
+  const grid = document.querySelector("#pokemonFavoritesList");
+  grid.innerHTML = "";
+
+  caughtPokemons.forEach(pokemon => {
+
+    const types = pokemon.types
+      .map(t => `<span class="type-badge type-${t}">${t}</span>`)
+      .join("");
+
+    const card = document.createElement("div");
+    card.className = "dex-card";
+
+    card.innerHTML = `
+    <div class="dex-card__img">
+      <img src="${pokemon.sprite}" style="width: 87%;">
+    </div>
+    <div class="dex-card__body">
+      <div class="dex-card__number">#${String(pokemon.id).padStart(4, '0')}</div>
+      <div class="dex-card__name">${pokemon.name}</div>
+      <div class="flex gap-1">${types}</div>
+    </div>
+  `;
+
+    grid.appendChild(card);
+  });
+}
+
