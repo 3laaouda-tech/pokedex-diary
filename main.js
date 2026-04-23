@@ -113,6 +113,13 @@ function handleSearch() {
         <p class="text-sm text-gray-400">#${String(found.id).padStart(4, '0')}</p>
       </div>
     `;
+    } else {
+      // If no match is found, show a fallback message
+      dialogContent.innerHTML = `
+      <p class="text-center text-red-400">
+        Pokémon not found 
+      </p>
+    `;
     }
 
     dialog.style.display = "flex";
