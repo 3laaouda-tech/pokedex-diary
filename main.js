@@ -1,3 +1,4 @@
+let PokeDetailsInfo = [];
 // Maria //
 fetch("https://pokeapi.co/api/v2/pokemon?limit=25")
   .then(res => res.json())
@@ -10,7 +11,7 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=25")
   })
   .then(pokemons => {
 
-    const PokeDetailsInfo = pokemons.map(details => {
+    PokeDetailsInfo = pokemons.map(details => {
       return {
         name: details.name,
         id: details.id,
@@ -63,7 +64,7 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=25")
       const caughtList = JSON.parse(localStorage.getItem("caughtPokemons") || "[]");
       const isCaught = caughtList.includes(pokemon.id);
       catchBtn.textContent = isCaught ? "Caught" : "Catch'em";
-      
+
       catchBtn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -89,3 +90,20 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=25")
     });
   })
   .catch(error => console.error(error));
+
+
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+
+function handleSearch() {
+  const value = searchInput.value;
+  if (value) {
+    const found = PokeDetailsInfo.find(p =>
+      p.name === value ||
+      p.id.toString() === value
+    );
+    console.log(found);
+  }
+}
+
+searchBtn.addEventListener("click", handleSearch);
