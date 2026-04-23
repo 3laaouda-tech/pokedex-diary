@@ -117,18 +117,19 @@
     </main>
 
 
-    <dialog id="searchDialog" class="rounded-xl p-6 bg-[#16213e] text-white w-80">
-        <div id="dialogContent"></div>
+    <div id="searchDialog" class="fixed inset-0 bg-black/60 flex items-center justify-center" style="display: none;">
+        <div class="bg-black">
+            <div id="dialogContent" ></div>
 
-        <div class="mt-4 text-right">
-            <button onclick="document.getElementById('searchDialog').close()"
-                class="px-4 py-1 bg-[#e94560] rounded text-sm">
-                Close
-            </button>
+            <div class="mt-4 text-right">
+                <button id="closeDialog" class="px-4 py-1 bg-[#e94560] rounded text-sm">
+                    Close
+                </button>
+            </div>
         </div>
-    </dialog>
+    </div>
 
-
+    
     <script src="main.js"></script>
 </body>
 

@@ -94,6 +94,8 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=25")
 
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
+const dialog = document.getElementById("searchDialog");
+const closeBtn = document.getElementById("closeDialog");
 
 function handleSearch() {
   const value = searchInput.value;
@@ -102,8 +104,23 @@ function handleSearch() {
       p.name === value ||
       p.id.toString() === value
     );
-    console.log(found);
+    if (found) {
+      // If Pokémon is found, display its basic info inside the dialog
+      dialogContent.innerHTML = `
+      <div class="text-center">
+        <img src="${found.sprite}" class="mx-auto mb-3 w-24">
+        <h2 class="text-lg font-bold capitalize">${found.name}</h2>
+        <p class="text-sm text-gray-400">#${String(found.id).padStart(4, '0')}</p>
+      </div>
+    `;
+    }
+
+    dialog.style.display = "flex";
   }
 }
 
 searchBtn.addEventListener("click", handleSearch);
+
+closeBtn.addEventListener("click", () => {
+  dialog.style.display = "none";
+});
