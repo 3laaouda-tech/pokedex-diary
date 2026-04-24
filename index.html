@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokédex</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokédex</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <style type="text/tailwindcss">
-        @layer base {
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <style type="text/tailwindcss">
+    @layer base {
       body {
         @apply bg-[#1a1a2e] text-[#e0e0f0] font-sans min-h-screen;
       }
@@ -72,73 +72,73 @@
 </head>
 
 <body>
-    <!-- HEADER -->
-    <header class="dex-header">
-        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center gap-6">
-            <div class="dex-logo">Pokédex</div>
+  <!-- HEADER -->
+  <header class="dex-header">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center gap-6">
+      <div class="dex-logo">Pokédex</div>
 
-            <div class="flex-1">
-              <nav>
-                <ul class="list-none flex flex-wrap gap-5">
-                  <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
-                  <li><a href="pokedex.html" class="text-gray-400 hover:text-white">Pokédex</a></li>
-                </ul>
-              </nav>
-            </div>
+      <div class="flex-1">
+        <nav>
+          <ul class="list-none flex flex-wrap gap-5">
+            <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+            <li><a href="pokedex.html" class="text-gray-400 hover:text-white">Pokédex</a></li>
+          </ul>
+        </nav>
+      </div>
 
-            <input type="text" placeholder="Search..." class="dex-search-input" id="searchInput">
-            <button class="dex-search__btn" id="searchBtn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-                </svg>
-            </button>
-        </div>
-    </header>
+      <input type="text" placeholder="Search..." class="dex-search-input" id="searchInput">
+      <button class="dex-search__btn" id="searchBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+        </svg>
+      </button>
+    </div>
+  </header>
 
-    <!-- MAIN -->
-    <main class="dex-main">
-        <div class="mb-6">
-            <h1 class="text-3xl font-bold">Pokédex</h1>
-            <p class="text-sm text-gray-400">Showing Pokémon</p>
-        </div>
-
-        <div class="dex-grid" id="pokemonList">
-            <!-- CARD -->
-            <a href="details.html" class="dex-card">
-                <div class="dex-card__img"><img
-                        src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/001.png"
-                        alt="Bulbasaur"></div>
-                <div class="dex-card__body">
-                    <div class="dex-card__number">#0001</div>
-                    <div class="dex-card__name">Bulbasaur</div>
-                    <div class="flex gap-1">
-                        <span class="type-badge type-grass">grass</span>
-                        <span class="type-badge type-poison">poison</span>
-                    </div>
-                </div>
-            </a>
-
-        </div>
-    </main>
-
-
-    <div id="searchDialog" class="fixed inset-0 bg-black/60 flex items-center justify-center" style="display: none;">
-        <div class="bg-[#0f3460] p-4 rounded-lg w-96">
-            <div id="dialogContent" ></div>
-
-            <div class="mt-4 text-right">
-                <button id="closeDialog" class="px-4 py-1 bg-[#e94560] rounded text-sm">
-                    Close
-                </button>
-            </div>
-        </div>
+  <!-- MAIN -->
+  <main class="dex-main">
+    <div class="mb-6">
+      <h1 class="text-3xl font-bold">Pokédex</h1>
+      <p class="text-sm text-gray-400">Showing Pokémon</p>
     </div>
 
+    <div class="dex-grid" id="pokemonList">
+      <!-- CARD -->
+      <a href="details.html" class="dex-card">
+        <div class="dex-card__img"><img
+            src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/detail/001.png" alt="Bulbasaur">
+        </div>
+        <div class="dex-card__body">
+          <div class="dex-card__number">#0001</div>
+          <div class="dex-card__name">Bulbasaur</div>
+          <div class="flex gap-1">
+            <span class="type-badge type-grass">grass</span>
+            <span class="type-badge type-poison">poison</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </main>
 
 
-    <script src="main.js"></script>
+  <div id="searchDialog" class="fixed inset-0 bg-black/60 flex items-center justify-center" style="display: none;">
+    <div class="bg-[#0f3460] p-4 rounded-lg w-96">
+      <div id="dialogContent"></div>
+
+      <div class="mt-4 text-right">
+        <button id="closeDialog" class="px-4 py-1 bg-[#e94560] rounded text-sm">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="main.js"></script>
 </body>
 
 </html>

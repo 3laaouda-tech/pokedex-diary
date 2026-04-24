@@ -89,7 +89,6 @@ fetch("https://pokeapi.co/api/v2/pokemon?limit=25")
         grid.appendChild(card);
       });
     }
-    getFavoritePokemons();
   })
   .catch(error => console.error(error));
 
@@ -135,33 +134,4 @@ closeBtn.addEventListener("click", () => {
 });
 
 
-function getFavoritePokemons() {
-  const caughtList = JSON.parse(localStorage.getItem("caughtPokemons") || "[]");
-  const caughtPokemons = PokeDetailsInfo.filter(pokemon => caughtList.includes(pokemon.id));
-  const grid = document.querySelector("#pokemonFavoritesList");
-  grid.innerHTML = "";
-
-  caughtPokemons.forEach(pokemon => {
-
-    const types = pokemon.types
-      .map(t => `<span class="type-badge type-${t}">${t}</span>`)
-      .join("");
-
-    const card = document.createElement("div");
-    card.className = "dex-card";
-
-    card.innerHTML = `
-    <div class="dex-card__img">
-      <img src="${pokemon.sprite}" style="width: 87%;">
-    </div>
-    <div class="dex-card__body">
-      <div class="dex-card__number">#${String(pokemon.id).padStart(4, '0')}</div>
-      <div class="dex-card__name">${pokemon.name}</div>
-      <div class="flex gap-1">${types}</div>
-    </div>
-  `;
-
-    grid.appendChild(card);
-  });
-}
 
